@@ -1,6 +1,11 @@
-lines = [[[x for x in y.split()] for y in l.strip().split('|')] for l in open("8.input.txt")]
+import os
+os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
 
-print(f"a: {sum([len([x for x in l[1] if len(x) in (2, 3, 4, 7)]) for l in lines])}")
+lines = [[[x for x in y.split()] for y in l.strip().split('|')] 
+		for l in open("8.input.txt")]
+
+a = sum([1 for l in lines for x in l[1] if len(x) in (2, 3, 4, 7)])
+print(f"a: {a}")
 
 all_numbers = ['abcefg','cf','acdeg','acdfg','bcdf',
 			   'abdfg','abdefg','acf','abcdefg','abcdfg']
@@ -54,11 +59,11 @@ for signals, numbers in lines:
 
 	for p in test_numbers:
 		if len(p) == 2:
-			 	filter(p, set(['c','f']))
+			filter(p, set(['c','f']))
 		elif len(p) == 3:
-				filter(p, set(['a','c','f']))
+			filter(p, set(['a','c','f']))
 		elif len(p) == 4:
-				filter(p, set(['b','c','d','f']))
+			filter(p, set(['b','c','d','f']))
 
 	remove_impossible()
 

@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+
 pl = [int(x) for line in open('7.input.ref') for x in line.strip().split(',')]
 
 dummy = [x for x in range(max(pl) + 1)]

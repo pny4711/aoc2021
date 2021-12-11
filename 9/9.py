@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+
 matrix = [[ int(ch) for ch in line.strip()] for line in open('9.input.txt')]
 lowpoints = [(i,j) for i in range(len(matrix)) for j in range(len(matrix[0]))
 			 if ((i == 0 or matrix[i-1][j] > matrix[i][j]) and

@@ -1,8 +1,7 @@
-import functools
 import os
+os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
 
-__location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+from functools import reduce
 
 class parse_exception(BaseException):
 	def __init__(self, ch):
@@ -26,9 +25,9 @@ def p(line):
 			raise parse_exception(line[0])
 	return debt
 
-for line in open(os.path.join(__location__, '10.input.txt')):
+for line in open('10.input.txt'):
 	try:
-		scb.append(functools.reduce(lambda v,ch: v * 5 + score[ch][1], p(line.strip()), 0))
+		scb.append(reduce(lambda v,ch: v * 5 + score[ch][1], p(line.strip()), 0))
 	except parse_exception as e:
 		sca += score[e.ch][0]
 

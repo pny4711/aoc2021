@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+
 import time
 
 start1 = time.time()
@@ -25,10 +28,8 @@ for s in range(10000):
 		for y in range(ys):
 			add(x,y,matrix)
 
-
 	matrix = [[v if v < 10 else 0 for v in x] for x in matrix]
 	flashes = sum([1 for x in matrix for v in x if v == 0])
-
 
 	if s < 100:
 		a += flashes

@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+
 lines = [[[int(v) for v in p.split(',')] for p in l.strip().split('->')]
          for l in open('5.input.txt')]
 
