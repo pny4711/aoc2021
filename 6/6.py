@@ -1,6 +1,3 @@
-import os
-os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
-
 import time
 
 seen = {}

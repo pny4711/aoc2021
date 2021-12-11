@@ -1,6 +1,3 @@
-import os
-os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
-
 boards = []
 
 lines = [l.strip() for l in open('4.input.txt')]

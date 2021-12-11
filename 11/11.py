@@ -1,10 +1,3 @@
-import os
-os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
-
-import time
-
-start1 = time.time()
-
 matrix = [[int(x) for x in line.strip()] for line in open('11.input')]
 xs, ys = len(matrix), len(matrix[0])
 
@@ -43,8 +36,6 @@ for s in range(10000):
 print(f"a: {a}")
 print(f"b: {b}")
 
-end1 = time.time()
-
 matrix = [[int(x) for x in line.strip()] for line in open('11.input')]
 
 a2 = 0
@@ -68,7 +59,3 @@ for s in range(1,1000):
 	if fl == h * w:
 		print(f"a2: {a2}\nb2: {s}")
 		break
-
-end2 = time.time()
-
-print(f"Times:\n1: {end1 - start1}\n2: {end2 - end1}")

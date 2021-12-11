@@ -1,6 +1,3 @@
-import os
-os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
-
 from functools import reduce
 
 a = reduce(lambda s, e : (s[0] + 1, int(e)) if s[1] and int(e) > s[1] else (s[0], int(e)), open('1.input'), (0,None))

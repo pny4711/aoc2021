@@ -1,6 +1,3 @@
-import os
-os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
-
 dig = None
 
 data = [[int(d) for d in line.strip()] for line in open('3.input')]

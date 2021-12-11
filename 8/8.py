@@ -1,6 +1,3 @@
-import os
-os.chdir(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
-
 lines = [[[x for x in y.split()] for y in l.strip().split('|')] 
 		for l in open("8.input.txt")]
 
