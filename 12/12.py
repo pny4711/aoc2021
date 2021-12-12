@@ -13,10 +13,10 @@ for a,b in [line.strip().split('-') for line in open('12.input.txt')]:
     insert(map, b, a)
 
 def walk(map, path, seen_small_once, seen_small_twice):
-    paths = []
+    paths = 0
     for next in map[path[-1]]:
         if next == "end":
-            paths += [path + [next]]
+            paths += 1
         elif next.isupper():
             paths += walk(map, path + [next], seen_small_once, seen_small_twice)
         elif next not in seen_small_once:
@@ -26,6 +26,6 @@ def walk(map, path, seen_small_once, seen_small_twice):
     return paths
 
 paths1 = walk(map, ["start"], [], True)
-print(f"a: {len(paths1)}")
+print(f"a: {paths1}")
 paths2 = walk(map, ["start"], [], False)
-print(f"b: {len(paths2)}")
+print(f"b: {paths2}")
