@@ -1,36 +1,26 @@
-maxx,maxy = 0,0
-dots = []
-nrdots = None
+def is_foldx(x, fa, fn): return (fa == 'x' and x > fn)
+def is_foldy(y, fa, fn): return (fa == 'y' and y > fn)
+def is_fold(x, y, fa, fn): return is_foldx(x, fa, fn) or is_foldy(y, fa, fn)
+def fold(x, y, fa, fn):
+    return (fn - (x - fn) if is_foldx(x, fa, fn) else x, 
+            fn - (y - fn) if is_foldy(y, fa, fn) else y)
+
+nr_dots,dots = [], set()
 with open('13.input.txt') as f:
     for line in f:
         if line.strip() == '':
             break
         x,y = line.strip().split(',')
-        dots.append((int(x),int(y)))
-        maxx = max(int(x),maxx)
-        maxy = max(int(y),maxy)
+        dots.add((int(x),int(y)))
 
-    fold = [line.strip() for line in f]
+    for fl in [line.strip() for line in f]:
+        fa,fn = fl.split()[2].split('=')
+        fn = int(fn)
+        dots = set([fold(x, y, fa, fn)  for x, y in dots 
+                    if not is_fold(x, y, fa, fn) or fold(x, y, fa, fn) not in dots])
+        nr_dots.append(len(dots))
 
-w = [[' ' for x in range(maxx +1)] for y in range(maxy + 1)]
-for x,y in dots:
-    w[y][x] = '#'
-
-for fl in fold:
-    fa,fn = fl.split()[2].split('=')
-    fn = int(fn)
-
-    if fa == 'y':
-        w1 = w[-1:fn:-1]
-        w0 = w[:fn]
-    else:
-        w1 = [wl[-1:fn:-1] for wl in w]
-        w0 = [wl[:fn] for wl in w]
- 
-    w = [[v if v == '#' else w0[y][x] for x,v in enumerate(w1l)] for y, w1l in enumerate(w1)]
-
-    if not nrdots:
-        nrdots = sum([1 for l in w for v in l if v == '#'])
-        print(f"a: {nrdots}\n")
-
-print("\n".join(["".join(l) for l in w]))
+print(f"a: {nr_dots[0]}\n")
+for y in range(1+ max([y for _,y in dots])):
+    print("".join(['#' if (x,y) in dots else ' ' 
+                    for x in range(1+ max([x for x,_ in dots]))]))
